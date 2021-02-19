@@ -13,3 +13,7 @@ In the root of the repository you will find folders, each folder containing a di
  - Folder **Binaries** => contains a single .exe file to execute as you like without the need for any installations
  - Folder **Scripts** => filled with the goodies (code) that creates the magic, feel free to adapt the code to your situation
  - File **README** *(Optional)* => can contain some details about the script
+
+## Easy script execution
+
+Use your scripts by compiling them to binaries (.exe files). When ready add the execution file to your Windows Startup folder in the start menu or add a task through the Task Scheduler. Happy scripting!
