@@ -1,6 +1,6 @@
 # Pin Window Script
 
-Script created to extend the functionality of the Chrome [Enhancer for YouTube](https://chrome.google.com/webstore/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle) extension. Forementioned Chrome extension, makes it possible to automatically resize you video player window or change the default video quality to your liking. There are a lot more functionalities but the one this script extends, is the Pop-out function. By popping out the video, it can be dragged along the screen without any distractments and positioned to your liking. 
+Script created to extend the functionality of the Chrome [Enhancer for YouTube](https://chrome.google.com/webstore/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle) extension. Forementioned Chrome extension, makes it possible to automatically resize your video player window or change the default video quality to your liking. There are a lot more functionalities but the one this script extends, is the Pop-out function. By popping out the video, it can be dragged along the screen without any distractions and positioned to your liking. 
 
 ## Functionality
 
