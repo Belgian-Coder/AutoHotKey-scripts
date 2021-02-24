@@ -13,3 +13,12 @@ Maximizing your screen space is easier with [PowerToys](https://github.com/micro
 # Pin Windows - Bottom Right - fancyZone
 
 A customized script to combine the functionallity to keep windows always on top with zone placement through FancyZones from Microsoft Powertoys. More information can be found in the script file.
+
+## Functionality
+
+All key combinations will only work in combination with designated zones in FancyZones as explained in the script file. Width and height of the zones do not influence functionality. You need to enable the "Override Windows Snap shortcut (Win + Arrow) to move windows between zones" setting in PowerToys. List of possible combinations:
+
+- `windows + alt + up` => maximize the active window
+- `windows + alt + left` => move and resize the active window to the left large zone
+- `windows + alt + right` => move and resize the active window to the upper right zone
+- `windows + alt + down` => move and resize the active window to the lower right zone
