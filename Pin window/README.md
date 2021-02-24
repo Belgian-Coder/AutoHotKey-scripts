@@ -1,4 +1,4 @@
-# Pin Window Script
+# Pin Window Script - Bottom Right
 
 Script created to extend the functionality of the Chrome [Enhancer for YouTube](https://chrome.google.com/webstore/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle) extension. Forementioned Chrome extension, makes it possible to automatically resize you video player window or change the default video quality to your liking. There are a lot more functionalities but the one this script extends, is the Pop-out function. By popping out the video, it can be dragged along the screen without any distractments and positioned to your liking. 
 
@@ -9,3 +9,7 @@ Execute the script through the AutoHotKey software or open the compiled binary. 
 ## Tips
 
 Maximizing your screen space is easier with [PowerToys](https://github.com/microsoft/PowerToys/releases) for Windows 10. By creating FancyZones, you can change your snapping spaces to surround the YouTube Window. Have fun watching those videos!
+
+# Pin Windows - Bottom Right - fancyZone
+
+A customized script to combine the functionallity to keep windows always on top with zone placement through FancyZones from Microsoft Powertoys. More information can be found in the script file.
