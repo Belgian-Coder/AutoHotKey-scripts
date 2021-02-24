@@ -19,11 +19,13 @@ global HEIGHT_MARGIN := 30
 global WIDTH_MARGIN := 20
 global NUMBER_OF_TRIES := 8
 global SLEEP_BETWEEN_COMMANDS := 100
+global ALWAYS_ON_TOP_LABEL := " (always on top)"
 
 ; On win + alt + space toggle active window always on top
 #!Space up::
 
     Winset, AlwaysOnTop, Toggle, A
+    ToggleWindowTitleAlwaysOnTop(0)
 
 return
 
@@ -99,6 +101,7 @@ return
 
     MoveAndResizeActiveWindowToZoneBottomRight()
     Winset, AlwaysOnTop, On, A
+    ToggleWindowTitleAlwaysOnTop(1)
 
 return
 
@@ -129,7 +132,6 @@ MoveAndResizeActiveWindowToZoneBottomRight() {
             Sleep % SLEEP_BETWEEN_COMMANDS
         }
     }
-
 }
 
 IsWindowAgainstLeftSide(monitorLeft, winX, winWidth) {
@@ -158,4 +160,21 @@ IsWindowAgainstRightSide(monitorRight, winX, winWidth) {
         return true
     }
 return false
+}
+
+ToggleWindowTitleAlwaysOnTop(forceOn) {
+
+    WinGetActiveTitle, WinTitle
+    StringLen, labelLength, ALWAYS_ON_TOP_LABEL
+    StringRight, TextAtEnd, WinTitle, labelLength
+
+    if (TextAtEnd == ALWAYS_ON_TOP_LABEL and forceOn == 0) {
+        newTitle = % SubStr(WinTitle,1,StrLen(WinTitle)-labelLength)
+        WinSetTitle, A,, %newTitle%
+        return
+    }
+
+    newTitle = %WinTitle%%ALWAYS_ON_TOP_LABEL%
+    WinSetTitle, A,, %newTitle%
+return
 }
