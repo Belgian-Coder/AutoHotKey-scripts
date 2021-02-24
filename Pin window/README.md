@@ -22,3 +22,5 @@ All key combinations will only work in combination with designated zones in Fanc
 - `windows + alt + left` => move and resize the active window to the left large zone
 - `windows + alt + right` => move and resize the active window to the upper right zone
 - `windows + alt + down` => move and resize the active window to the lower right zone
+- `windows + alt + y` => move and resize the active window to the lower right zone and force it to always stay on top
+- `windows + alt + space` => toggle to force the active window to always stay on top
