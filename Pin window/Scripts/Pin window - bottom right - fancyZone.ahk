@@ -18,7 +18,8 @@
 global HEIGHT_MARGIN := 30
 global WIDTH_MARGIN := 20
 global NUMBER_OF_TRIES := 8
-global SLEEP_BETWEEN_COMMANDS := 100
+global SLEEP_BETWEEN_COMMANDS := 50
+global SLEEP_BETWEEN_KEY_PRESS := 10
 global ALWAYS_ON_TOP_LABEL := " (always on top)"
 
 ; On win + alt + space toggle active window always on top
@@ -32,6 +33,42 @@ return
 ; On win + alt + arrowLeft move and resize active window to zone 1 on the left
 #!Left up::
 
+    MoveActiveWindowToZoneLeft()
+
+return
+
+; On win + alt + arrowRight move and resize active window to zone 2 on the top right
+#!Right up::
+
+    MoveActiveWindowToZoneTopRight()
+
+return
+
+; On win + alt + arrowDown move and resize active window to zone 3 on the bottom right
+#!Down up::
+
+    MoveActiveWindowToZoneBottomRight()
+
+return
+
+; On win + alt + arrowUp maximize active window 
+#!Up up::
+
+    WinMaximize, A
+
+return
+
+; On win + alt + y set active window to always on top and move and resize to zone 3 on the bottom right
+#!y up::
+
+    MoveActiveWindowToZoneBottomRight()
+    Winset, AlwaysOnTop, On, A
+    ToggleWindowTitleAlwaysOnTop(1)
+
+return
+
+MoveActiveWindowToZoneLeft() {
+
     ; retrieve screen workarea, subtracted task- and toolbars
     SysGet, MonitorWorkArea, MonitorWorkArea
 
@@ -44,14 +81,22 @@ return
             break
         }
 
-        SendInput #{Left}
-        Sleep % SLEEP_BETWEEN_COMMANDS
+        if (IsWindowAgainstRightSide(MonitorWorkAreaRight, WinX, WinW)) {
+            SendEvent #{Left}{LWin Up}
+            Sleep % SLEEP_BETWEEN_COMMANDS
+        } else if (!IsWindowAgainstBottomSide(MonitorWorkAreaBottom, WinY, WinH)) {
+            SendEvent #{Left}{LWin Up}
+            Sleep % SLEEP_BETWEEN_COMMANDS
+        } else if (!IsWindowAgainstTopSide(MonitorWozxrkAreaTop, WinY, WinH)) {
+            SendEvent #{Left}{LWin Up}
+            Sleep % SLEEP_BETWEEN_COMMANDS
+        }
     }
 
 return
+}
 
-; On win + alt + arrowRight move and resize active window to zone 2 on the top right
-#!Right up::
+MoveActiveWindowToZoneTopRight() {
 
     ; retrieve screen workarea, subtracted task- and toolbars
     SysGet, MonitorWorkArea, MonitorWorkArea
@@ -66,46 +111,25 @@ return
         }
 
         if (IsWindowAgainstLeftSide(MonitorWorkAreaLeft, WinX, WinW)) {
-            SendInput #{Right}
+            SendEvent #{Right}{LWin Up}
             Sleep % SLEEP_BETWEEN_COMMANDS
         } else if (!IsWindowAgainstRightSide(MonitorWorkAreaRight, WinX, WinW)) {
-            SendInput #{Left}
+            SendEvent #{Left}{LWin Up}
             Sleep % SLEEP_BETWEEN_COMMANDS
         } else if (IsWindowAgainstBottomSide(MonitorWorkAreaBottom, WinY, WinH)) {
-            SendInput #{Up}
+            SendEvent #{Up}{LWin Up}
             Sleep % SLEEP_BETWEEN_COMMANDS
         } else if (!IsWindowAgainstTopSide(MonitorWorkAreaTop, WinY, WinH)) {
-            SendInput #{Up}
+            SendEvent #{Up}{LWin Up}
             Sleep % SLEEP_BETWEEN_COMMANDS
         }
     }
 
 return
+}
 
-; On win + alt + arrowDown move and resize active window to zone 3 on the bottom right
-#!Down up::
+MoveActiveWindowToZoneBottomRight() {
 
-    MoveAndResizeActiveWindowToZoneBottomRight()
-
-return
-
-; On win + alt + arrowUp maximize active window 
-#!Up up::
-
-    WinMaximize, A
-
-return
-
-; On win + alt + y set active window to always on top and move and resize to zone 3 on the bottom right
-#!y up::
-
-    MoveAndResizeActiveWindowToZoneBottomRight()
-    Winset, AlwaysOnTop, On, A
-    ToggleWindowTitleAlwaysOnTop(1)
-
-return
-
-MoveAndResizeActiveWindowToZoneBottomRight() {
     ; retrieve screen workarea, subtracted task- and toolbars
     SysGet, MonitorWorkArea, MonitorWorkArea
 
@@ -119,19 +143,21 @@ MoveAndResizeActiveWindowToZoneBottomRight() {
         }
 
         if (IsWindowAgainstLeftSide(MonitorWorkAreaLeft, WinX, WinW)) {
-            SendInput #{Right}
+            SendEvent #{Right}{LWin Up}
             Sleep % SLEEP_BETWEEN_COMMANDS
         } else if (!IsWindowAgainstRightSide(MonitorWorkAreaRight, WinX, WinW)) {
-            SendInput #{Left}
+            SendEvent #{Left}{LWin Up}
             Sleep % SLEEP_BETWEEN_COMMANDS
         } else if (IsWindowAgainstTopSide(MonitorWorkAreaTop, WinY, WinH)) {
-            SendInput #{Down}
+            SendEvent #{Down}{LWin Up}
             Sleep % SLEEP_BETWEEN_COMMANDS
         } else if (!IsWindowAgainstBottomSide(MonitorWorkAreaBottom, WinY, WinH)) {
-            SendInput #{Down}
+            SendEvent #{Down}{LWin Up}
             Sleep % SLEEP_BETWEEN_COMMANDS
         }
     }
+
+return
 }
 
 IsWindowAgainstLeftSide(monitorLeft, winX, winWidth) {
